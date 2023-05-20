@@ -29,7 +29,7 @@ async function login(req, res, next, err, results) {
                 await bcrypt.genSalt(1, async function(err, salt) {
                     await bcrypt.hash(password, salt, async function(err, hash) {
                         res.cookie('password', hash);
-                        res.render('welcome', {title: `Welcome to Healther, ${email}`, info: 'What will you do today?'});
+                        return "login success";
                     });
                 });
              }
