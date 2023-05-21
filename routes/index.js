@@ -27,10 +27,11 @@ router.post('/authenticateUser', async function(req, res, next) {
     res.render('login', {title: 'Login to PA3', info: 'Incorrect password or email:'});
   else if (result == "user does not exist")
     res.render('login', {title: 'Login to PA3', info: 'Email does not exist. If you do not have an account, please sign up:'});
+  else if (result == "ETIMEDOUT")
+    res.render('login', {title: 'Login to PA3', info: 'Please check your connection and try again. If the issue persists, try reconnecting to the internet:'});
   else {
     bcrypt.genSalt(1, async function(err, salt) {
       bcrypt.hash(result.substring(result.indexOf(";") + 1), salt, async function(err, hash) {
-          console.log(result.substring(result.indexOf(";") + 1))
           res.cookie('password', hash);
           res.redirect('/upload');
       });
