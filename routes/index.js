@@ -31,10 +31,9 @@ router.post('/authenticateUser', async function(req, res, next) {
       bcrypt.hash(result.substring(result.indexOf(";") + 1), salt, async function(err, hash) {
           console.log(result.substring(result.indexOf(";") + 1))
           res.cookie('password', hash);
-          res.redirect('/login');
+          res.redirect('/upload');
       });
     });
-    //res.render('login', {title: 'Login to PA3', info: 'es'});
   }
 });
 router.post('/registerUser', async function(req, res, next) {
