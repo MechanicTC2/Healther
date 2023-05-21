@@ -4,7 +4,7 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-	
+async function getNutrition(gender, age, height, weight){
 	const response = await openai.createCompletion({
 		model: "text-davinci-003",
 		prompt: "format both DRI and micronutrients into a javascript object: " + gender + ", " + age + " year old, " + height + ", " + weight + " pounds.",
