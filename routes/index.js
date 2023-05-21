@@ -40,4 +40,13 @@ router.post('/registerUser', async function(req, res, next) {
 router.get('/upload', function(req, res, next){
   res.render('upload', {title: 'upload'});
 });
+router.get('/welcome', function(req, res, next){
+  res.render('welcome', {title: 'info', 'info': 'Your dietary info'})
+})
+router.post('/processImages', async function(req, res, next){
+  res.render('display.ejs', foods=queryTags(req.body.photo));
+})
+router.get('/display', function(req, res, next){
+  res.render('display', foods=req.foods)
+})
 module.exports = router;
