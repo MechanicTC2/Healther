@@ -32,7 +32,7 @@ async function login(req, res, next, err, results) {
     catch (err) {
         console.log(err.errorno);
         console.log("login failed, user does not exist");
-        return "user does not exist";
+        return err.errorno;
     }
 }
 //signup
