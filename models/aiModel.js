@@ -35,7 +35,7 @@ async function getDiet(age, height, weight){
 async function getNutritionalValues(food) {
 	const response = await openai.createCompletion({
 		model: "text-davinci-003",
-		prompt: "return all nutritional facts for " + food,
+		prompt: "return all nutritional facts for " + food + ". add a '\n' at the end of each line",
 		max_tokens: 3000,
 		temperature: 0
 	});
