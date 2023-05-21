@@ -3,7 +3,6 @@ const knex = require('knex')({
     client: 'mysql',
     connection: localSQLConnection,
   })
-const bcrypt = require('bcrypt');
 //login
 async function login(req, res, next, err, results) {
     var email = req.body.email; 
@@ -26,17 +25,12 @@ async function login(req, res, next, err, results) {
             }
             else {
                 console.log("login success");
-                await bcrypt.genSalt(1, async function(err, salt) {
-                    await bcrypt.hash(password, salt, async function(err, hash) {
-                        res.cookie('password', hash);
-                        return "login success";
-                    });
-                });
+                return email + ";" + password;
              }
         }
     }
     catch (err) {
-        console.log(err);
+        console.log(err.errorno);
         console.log("login failed, user does not exist");
         return "user does not exist";
     }

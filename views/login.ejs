@@ -9,10 +9,10 @@
     <p><%= info %></p>
     <form method="post" action="/authenticateUser" id="login" name="login">
         <label for="email">Email Address: </label>
-        <input name="email" type="text" id="email" email_add="email">
+        <input name="email" type="text" id="email" email_add="email" required>
         <br>
         <label for="pass">Password: </label>
-        <input name="password" type="text" id="pass" password="pass">
+        <input name="password" type="text" id="pass" password="pass" required>
         <br>
         <input type="submit" value="Login">
     </form>
