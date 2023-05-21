@@ -1,14 +1,11 @@
 var express = require('express');
 var router = express.Router();
 const { login, signup } = require('../models/userModel');
-const cookieParser = require('cookie-parser');
-const bcrypt = require('bcrypt');
-router.use(cookieParser());
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  console.log(req.cookies);
-  res.render('index', {title: 'Login to PA3'});
+  res.render('index', { title: 'PA3' });
 });
 
 router.get('/login', function(req, res, next) {

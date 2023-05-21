@@ -1,11 +1,9 @@
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
-  apiKey: "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"
 });
 const openai = new OpenAIApi(configuration);
 
-async function getNutritionInfo(gender, age, height, weight){
 	
 	const response = await openai.createCompletion({
 		model: "text-davinci-003",
@@ -13,7 +11,6 @@ async function getNutritionInfo(gender, age, height, weight){
 		max_tokens: 3000,
 		temperature: 0,
 	});
-	//console.log(response.data.choices[0].text)
 	return response.data.choices[0].text
 }
 
@@ -25,8 +22,6 @@ async function getDiet(gender, age, height, weight){
 		max_tokens: 3000,
 		temperature: 0,
 	});
-	//console.log(response.data.choices[0].text)
 	return response.data.choices[0].text
 }
 
-module.exports = {getNutritionInfo, getDiet}
