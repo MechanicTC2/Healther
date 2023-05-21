@@ -6,22 +6,27 @@
     <script>
     window.onload = function() {
       photo = document.getElementById("photo")
-      console.log(photo.value)
       photo.addEventListener("change", function(){
-        console.log("changed")
-        const file = photo.value;
-        console.log(typeof photo.value)
-        photo.value = URL.createObjectURL(file);
-      })
-    }
+        var src = URL.createObjectURL(this.files[0]);
+          const canvas = document.getElementById('canvas');
+          var base_image = new Image();
+          base_image.src = src;
+          base_image.onload = function() {
+            document.getElementById("b64").value = canvas.toDataURL('base64');
+          }
+      });
+    };
     </script>
   </head>
   <body>
     <h1><%= title %></h1>
     <form method="post" action="/processImages" id="login" name="login">
         <label for="photo">upload photo OF INDIVIDUAL FOOD ITEM here:</label>
-        <input type="file" id="photo" value="photo" name="photo" accept="image/*" required>
         <br>
+        <input type="file" id="photo" value="photo" name="photo" accept="image/*" required>
+        <canvas id="canvas" width="100%" height="100%"></canvas>
+        <br>
+        <input id="b64" value="file path will appear here" name="b64" readonly>
         <input type="submit" value="submit">
     </form>
   </body>
