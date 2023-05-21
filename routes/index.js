@@ -58,6 +58,7 @@ router.post('/processImages', async function(req, res, next){
   res.render('display.ejs', foods=queryTags(req.body.photo));
 })
 router.get('/display', function(req, res, next){
+  console.log(res.cookie);
   res.render('display', foods=req.foods, nutrition = aiModel.getNutrition(), diet = aiModel.getDiet(), query = aiModel.queryTags());
 })
 
