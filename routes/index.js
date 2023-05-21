@@ -9,10 +9,6 @@ router.use(cookieParser());
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-  const nutrition = await aiModel.getNutrition("male", "14", "154", "50")
-  const diet = await aiModel.getDiet("male", "14", "154", "50")
-  console.log(nutrition)
-  console.log(diet);
   res.render('index', {title: 'Login to PA3'});
 });
 
@@ -44,7 +40,12 @@ router.post('/authenticateUser', async function(req, res, next) {
 });
 router.post('/registerUser', async function(req, res, next) {
   const result = await signup(req, res, next);
-  console.log(result);
+  if(result === "signup success"){
+    res.render('upload', {title: 'upload'});
+  }
+  else{
+    res.render("oops", {title: "This email already exists, please try again."})
+  }
 });
 router.get('/upload', function(req, res, next){
   res.render('upload', {title: 'upload'});
