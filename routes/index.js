@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const { login, signup } = require('../models/userModel');
+const { queryTags } = require('../models/aiModel');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 router.use(cookieParser());
@@ -43,4 +44,13 @@ router.post('/registerUser', async function(req, res, next) {
 router.get('/upload', function(req, res, next){
   res.render('upload', {title: 'upload'});
 });
+router.get('/welcome', function(req, res, next){
+  res.render('welcome', {title: 'info', 'info': 'Your dietary info'})
+})
+router.post('/processImages', async function(req, res, next){
+  res.render('display.ejs', foods=queryTags(req.body.photo));
+})
+router.get('/display', function(req, res, next){
+  res.render('display', foods=req.foods)
+})
 module.exports = router;
