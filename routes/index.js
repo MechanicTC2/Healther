@@ -59,8 +59,8 @@ router.get('/welcome', function(req, res, next){
   res.render('welcome', {title: 'info', 'info': 'Your dietary info'})
 })
 router.post('/processImages', async function(req, res, next){
-  console.log(await req.body)
-  res.render('display.ejs', foods=queryTags(req.body.b64));
+  
+  res.render('displayFood', {foods: await aiModel.queryTags(req.body.b64)});
 })
 router.get("/home", function(req, res, next){
   res.render("home")
@@ -92,6 +92,6 @@ router.post('/display', async function(req, res, next){
   const n = dsplit[4].substring(dsplit[4].indexOf('"'));
   const o = dsplit[5].substring(dsplit[5].indexOf('"'), dsplit[5].indexOf("}"));
 
-  res.render('display', {a:a,b:b,c:c,d:d,e:e,f:f,g:g,h:h,i:i,j:j,k:k,l:l,m:m,n:n,o:o})
+  res.render('display', {a:a,b:b,c:c,d:d,e:e,f:f,g:g,h:h,i:i,j:j,k:k,l:l,m:m,n:n,o:o});
 })
 module.exports = router;

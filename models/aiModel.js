@@ -43,18 +43,18 @@ async function getNutritionalValues(food) {
 }
 
 async function queryTags(images) {
-    fetch('https://www.nyckel.com/v1/functions/b2a5oliheud0po9y/invoke', {
+    return fetch('https://www.nyckel.com/v1/functions/b2a5oliheud0po9y/invoke', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({"data": images})    
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data)
-        return data.labelName;
+    .then(async response => response.json())
+    .then(async data => {
+		const responses = await getNutritionalValues(data.labelName);
+		return responses;
     });
 }
 
-module.exports = {getDiet, getNutrition, queryTags}
+module.exports = {getDiet, getNutrition, queryTags, getNutritionalValues}
