@@ -7,8 +7,9 @@
   <body>
     <h1><%= title %></h1>
     <form method="post" action="/processImages" id="login" name="login">
-        <label for="photo">upload photo OF INDIVIDUAL FOOD ITEM here: </label>
-        <input type="file" value="photo" name="photo">
+        <label for="photo">upload photo OF INDIVIDUAL FOOD ITEM here:</label>
+        <input type="file" value="photo" name="photo" required>
+        <br>
         <input type="submit" value="submit">
     </form>
   </body>
