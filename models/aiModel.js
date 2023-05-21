@@ -4,8 +4,9 @@ const imageToURI = require('image-to-uri');
 const sblob = require('node:buffer');
 const FileReader = require('filereader');
 const { response } = require("express");
+require('dotenv').config({ path:".env"});
 const configuration = new Configuration({
-	apiKey: "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" 
+	apiKey: process.env.KEY
 });
 const openai = new OpenAIApi(configuration);
 
