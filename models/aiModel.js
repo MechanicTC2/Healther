@@ -1,6 +1,7 @@
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
+	apiKey: "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" 
 });
 const openai = new OpenAIApi(configuration);
 
@@ -11,6 +12,7 @@ async function getNutrition(gender, age, height, weight){
 		max_tokens: 3000,
 		temperature: 0,
 	});
+	//console.log(response.data.choices[0].text)
 	return response.data.choices[0].text
 }
 
@@ -22,6 +24,7 @@ async function getDiet(gender, age, height, weight){
 		max_tokens: 3000,
 		temperature: 0,
 	});
+	//console.log(response.data.choices[0].text)
 	return response.data.choices[0].text
 }
 
@@ -41,4 +44,4 @@ function queryTags(images){
     });
 }
 
-module.exports = {queryTags, toDataURL}
+module.exports = {getDiet, getNutrition, queryTags}

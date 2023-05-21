@@ -2,13 +2,17 @@ var express = require('express');
 var router = express.Router();
 const { login, signup } = require('../models/userModel');
 const { queryTags } = require('../models/aiModel');
+const aiModel = require('../models/aiModel');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 router.use(cookieParser());
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  console.log(req.cookies);
+router.get('/', async function(req, res, next) {
+  const nutrition = await aiModel.getNutrition("male", "14", "5 feet 6 inches", "weight")
+  const diet = await aiModel.getDiet("male", "14", "5 feet 6 inches", "weight")
+  console.log(nutrition)
+  console.log(diet);
   res.render('index', {title: 'Login to PA3'});
 });
 

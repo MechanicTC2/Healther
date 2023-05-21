@@ -20,12 +20,8 @@
     "knex": "^2.4.2",
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
-<<<<<<< HEAD
-    "python-bridge": "^1.1.0"
-=======
     "openai": "^3.2.1",
     "openapi": "^1.0.1"
->>>>>>> 826f1db8677141b1789e0c9ff4d6b6f47a56c436
   },
   "devDependencies": {
     "chai": "^4.2.0",
