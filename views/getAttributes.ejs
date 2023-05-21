@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p><%= info %></p>
+    <form method="post" action="/display" id="attribute" name="attribute">
+        <label for="height">Height (cm): </label>
+        <input name="height" type="text" id="height" height="height" required>
+        <br>
+        <label for="weight">Weight (kg): </label>
+        <input name="weight" type="text" id="weight" weight="weight" required>
+        <br>
+        <label for="age">Age: </label>
+        <input name="age" type="text" id="age" age="age" required>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>

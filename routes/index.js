@@ -13,8 +13,13 @@ router.get('/', async function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('login', {title: 'Login to Healther', info: 'Login with existing credentials:'});
+  res.render('login', {title: 'Welcome to Healther', info: 'Login with existing credentials:'});
 });
+
+router.get("/getAttributes", async function(req, res, next){
+  res.render('getAttributes', {title: 'Just a short survey', info: 'Please fill in these fields so we can create your personal dietary plan!'})
+})
+
 router.get('/signup', function(req, res, next) {
   res.render('signup', {title: 'Signup for Healther', info: 'Signup for Healther, email and password:'});
 });
@@ -24,16 +29,16 @@ router.post('/authenticateUser', async function(req, res, next) {
   if (result == "not enough cred")
     res.render('login', {title: 'Login to Healther', info: 'Please fill in all fields. '});
   else if (result == "incorrect pass/email")
-    res.render('login', {title: 'Login to Healther', info: 'Incorrect password or email:'});
+    res.render('login', {title: 'It looks like we experienced a problem', info: 'Incorrect password or email:'});
   else if (result == "user does not exist")
-    res.render('login', {title: 'Login to Healther', info: 'Email does not exist. If you do not have an account, please sign up:'});
+    res.render('login', {title: 'It looks like we experienced a problem', info: 'Email does not exist. If you do not have an account, please sign up:'});
   else if (result == "ETIMEDOUT")
-    res.render('login', {title: 'Login to Healther', info: 'Please check your connection and try again. If the issue persists, try reconnecting to the internet:'});
+    res.render('login', {title: 'It looks like we experienced a problem', info: 'Please check your connection and try again. If the issue persists, try reconnecting to the internet:'});
   else {
     bcrypt.genSalt(1, async function(err, salt) {
       bcrypt.hash(result.substring(result.indexOf(";") + 1), salt, async function(err, hash) {
           res.cookie('password', hash);
-          res.redirect('/upload');
+          res.redirect('/home');
       });
     });
   }
@@ -41,7 +46,7 @@ router.post('/authenticateUser', async function(req, res, next) {
 router.post('/registerUser', async function(req, res, next) {
   const result = await signup(req, res, next);
   if(result === "signup success"){
-    res.render('upload', {title: 'upload'});
+    res.redirect('/home');
   }
   else{
     res.render("oops", {title: "This email already exists, please try again."})
@@ -57,9 +62,37 @@ router.post('/processImages', async function(req, res, next){
   console.log(await req.body)
   res.render('display.ejs', foods=queryTags(req.body.b64));
 })
-router.get('/display', function(req, res, next){
-  console.log(res.cookie);
-  res.render('display', foods=req.foods, nutrition = aiModel.getNutrition(), diet = aiModel.getDiet(), query = aiModel.queryTags());
+router.get("/home", function(req, res, next){
+  res.render("home")
+})
+router.post('/display', async function(req, res, next){
+  var height = req.body.height;
+  var weight = req.body.weight;
+  var age = req.body.age;
+  const nutrition = await aiModel.getNutrition(age, height, weight);
+  const diet = await aiModel.getDiet(age, height, weight)
+
+  const nsplit = nutrition.split(",")
+  const dsplit = diet.split(",")
+
+  const a = nsplit[0]
+  const b = nsplit[1]
+  const c = nsplit[2]
+  const d = nsplit[3]
+  const e = nsplit[4]
+  const f = nsplit[5]
+  const g = nsplit[6]
+  const h = nsplit[7]
+  const i = nsplit[8]
+  const j = nsplit[9]
+  const k = nsplit[10]
+  const l = nsplit[11]
+
+  const m = dsplit[3]
+  const n = dsplit[4]
+  const o = dsplit[5]
+
+  res.render('display', {a:a,b:b,c:c,d:d,e:e,f:f,g:g,h:h,i:i,j:j,k:k,l:l,m:m,n:n,o:o})
 })
 
 //Display esports
