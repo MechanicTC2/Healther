@@ -46,7 +46,7 @@ router.post('/authenticateUser', async function(req, res, next) {
 router.post('/registerUser', async function(req, res, next) {
   const result = await signup(req, res, next);
   if(result === "signup success"){
-    res.render('home');
+    res.redirect('/home');
   }
   else{
     res.render("oops", {title: "This email already exists, please try again."})
@@ -62,12 +62,36 @@ router.post('/processImages', async function(req, res, next){
   console.log(req.body.photo)
   res.render('display.ejs', foods=queryTags(req.body.photo));
 })
-router.get('/display', function(req, res, next){
+router.get("/home", function(req, res, next){
+  res.render("home")
+})
+router.post('/display', async function(req, res, next){
   var height = req.body.height;
-    var weight = req.body.weight;
-    var age = req.body.age;
-  const nutrition = aiModel.getNutrition(age, height, weight);
-  const diet = aiModel.getDiet(age, height, weight)
-  res.render('display', {nutrition:nutrition, diet:diet})
+  var weight = req.body.weight;
+  var age = req.body.age;
+  const nutrition = await aiModel.getNutrition(age, height, weight);
+  const diet = await aiModel.getDiet(age, height, weight)
+
+  const nsplit = nutrition.split(",")
+  const dsplit = diet.split(",")
+
+  const a = nsplit[0]
+  const b = nsplit[1]
+  const c = nsplit[2]
+  const d = nsplit[3]
+  const e = nsplit[4]
+  const f = nsplit[5]
+  const g = nsplit[6]
+  const h = nsplit[7]
+  const i = nsplit[8]
+  const j = nsplit[9]
+  const k = nsplit[10]
+  const l = nsplit[11]
+
+  const m = dsplit[3]
+  const n = dsplit[4]
+  const o = dsplit[5]
+
+  res.render('display', {a:a,b:b,c:c,d:d,e:e,f:f,g:g,h:h,i:i,j:j,k:k,l:l,m:m,n:n,o:o})
 })
 module.exports = router;

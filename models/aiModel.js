@@ -8,11 +8,11 @@ const openai = new OpenAIApi(configuration);
 async function getNutrition(age, height, weight){
 	const response = await openai.createCompletion({
 		model: "text-davinci-003",
-		prompt: "format both DRI and micronutrients into a javascript object: " + age + " year old, " + height + " centimeters, " + weight + " kilograms.",
+		prompt: "format both DRI and micronutrients into a javascript object with milligrams: " + age + " year old, " + height + " centimeters, " + weight + " kilograms.",
 		max_tokens: 3000,
 		temperature: 0,
 	});
-	//console.log(response.data.choices[0].text)
+	//console.log(typeof response.data.choices[0].text)
 	return response.data.choices[0].text
 }
 
