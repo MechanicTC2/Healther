@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html>
   <script>
-    
+    window.onload = function(){
+      let Foods = <%=foods%>;
+      let Nutrients = <%=nutrients.DRI%>;
+      let Micronutrients = <%=nutrients.micronutrients%>;
+
+      let foodDiv = document.getElementById("FOODS-DIV")
+      let nutrientsDiv = document.getElementById("NUTRIENTS-DIV")
+      let micronutrientsDiv = document.getElementById("MICRO-DIV")
+
+      for(food in Foods){
+        const paragraph = document.createElement('p');
+        paragraph.textContent = food;
+        foodDiv.appendChild(paragraph);
+      }
+      for(nutrient in Nutrients){
+        const paragraph = document.createElement('p');
+      paragraph.textContent = nutrient;     
+        nutrientsDiv.appendChild(paragraph);
+      }
+      for(micro in Micronutrients){
+        const paragraph = document.createElement('p');
+        paragraph.textContent = nutrient;
+        micronutrientsDiv.appendChild(paragraph);
+      }
+      
+    }
   </script>
   <head>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <h1>food</h1>
-    <h1><%=foods%></h1>
+    <div id="FOODS-DIV"></div>
     <h1>nutrients</h1>
     <div id="NUTRIENTS-DIV"></div>
     <h1>micronutrients</h1>
