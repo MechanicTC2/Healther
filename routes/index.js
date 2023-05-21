@@ -1,10 +1,14 @@
 var express = require('express');
 var router = express.Router();
 const { login, signup } = require('../models/userModel');
+const aiModel = require('../models/aiModel');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'PA3' });
+  aiModel.getDriMicro("male", "14", "5 feet 6 inches", "108");
+  aiModel.getDiet("male", "14", "5 feet 6 inches", "108");
+  res.render('index', { title: 'PA3' });  
 });
 
 router.get('/login', function(req, res, next) {
