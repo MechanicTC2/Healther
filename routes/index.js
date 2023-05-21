@@ -21,10 +21,13 @@ router.post('/authenticateUser', async function(req, res, next) {
   else if (result == "incorrect pass/email")
     res.render('login', {title: 'Login to PA3', info: 'Incorrect password or email:'});
   else if (result == "user does not exist")
-    res.render('login', {title: 'Login to PA3', info: 'Email does not exist. If you do not have an account, please sign up:'});
+    res.render('login', {title: 'Login to PA3', info: 'Email does not exist. If you do not have an account, please sign up:'}); // There is no login success option
 });
 router.post('/registerUser', async function(req, res, next) {
   const result = await signup(req, res, next);
   console.log(result);
+});
+router.get('/upload', function(req, res, next){
+  res.render('upload', {title: 'upload'});
 });
 module.exports = router;
