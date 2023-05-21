@@ -9,8 +9,8 @@ router.use(cookieParser());
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-  const nutrition = await aiModel.getNutrition("male", "14", "5 feet 6 inches", "weight")
-  const diet = await aiModel.getDiet("male", "14", "5 feet 6 inches", "weight")
+  const nutrition = await aiModel.getNutrition("male", "14", "154", "50")
+  const diet = await aiModel.getDiet("male", "14", "154", "50")
   console.log(nutrition)
   console.log(diet);
   res.render('index', {title: 'Login to PA3'});
