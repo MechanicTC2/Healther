@@ -31,6 +31,17 @@ async function getDiet(age, height, weight){
 	//console.log(response.data.choices[0].text)
 	return response.data.choices[0].text
 }
+
+async function getNutritionalValues(food) {
+	const response = await openai.createCompletion({
+		model: "text-davinci-003",
+		prompt: "return all nutritional facts for " + food,
+		max_tokens: 3000,
+		temperature: 0
+	});
+	return response.data.choices[0].text;
+}
+
 async function queryTags(images) {
     fetch('https://www.nyckel.com/v1/functions/b2a5oliheud0po9y/invoke', {
         method: 'POST',
@@ -42,7 +53,7 @@ async function queryTags(images) {
     .then(response => response.json())
     .then(data => {
         console.log(data)
-        return data;
+        return data.labelName;
     });
 }
 

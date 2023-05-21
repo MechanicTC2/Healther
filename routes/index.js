@@ -75,7 +75,7 @@ router.post('/display', async function(req, res, next){
   const nsplit = nutrition.split(",")
   const dsplit = diet.split(",")
 
-  const a = nsplit[0]
+  const a = nsplit[0].substring(nsplit[0].indexOf("C"));
   const b = nsplit[1]
   const c = nsplit[2]
   const d = nsplit[3]
@@ -88,9 +88,9 @@ router.post('/display', async function(req, res, next){
   const k = nsplit[10]
   const l = nsplit[11]
 
-  const m = dsplit[3]
-  const n = dsplit[4]
-  const o = dsplit[5]
+  const m = dsplit[3].substring(dsplit[3].indexOf('"'));
+  const n = dsplit[4].substring(dsplit[4].indexOf('"'));
+  const o = dsplit[5].substring(dsplit[5].indexOf('"'), dsplit[5].indexOf("}"));
 
   res.render('display', {a:a,b:b,c:c,d:d,e:e,f:f,g:g,h:h,i:i,j:j,k:k,l:l,m:m,n:n,o:o})
 })

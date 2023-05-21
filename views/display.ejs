@@ -3,24 +3,54 @@
   <head>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
+  <style>
+    table, th, td {
+      border:1px solid black;
+      width: 25%
+    }
+  </style>
   <body>
     <h1>DRI and Micronutrients</h1>
-      <p1><%=a%>, </p1>
-      <p2><%=b%>, </p2>
-      <p3><%=c%>, </p3>
-      <p4><%=d%>, </p4>
-      <p5><%=e%>, </p5>
-      <p6><%=f%>, </p6>
-      <p7><%=g%>, </p7>
-      <p8><%=h%>, </p8>
-      <p9><%=i%>, </p9>
-      <p10><%=j%>, </p10>
-      <p11><%=k%>, </p11>
-      <p12><%=l%>, </p12>
+      <p>Daily Nutrients Needed:</p>
+      <table id="table">
+        <tr>
+          <td><%= a %>mg</td>
+          <td><%= b %>mg</td>
+        </tr>
+        <tr>
+          <td><%= c %>mg</td>
+          <td><%= d %>mg</td>
+        </tr>
+          <td><%= e %>mg</td>
+          <td><%= f %>mg</td>
+        </tr>
+        <tr>
+          <td><%= g %>mg</td>
+          <td><%= h %>mg</td>
+        </tr>
+        <tr>
+          <td><%= i %>mg</td>
+          <td><%= j %>mg</td>
+        </tr>
+        <tr>
+          <td><%= k %>mg</td>
+          <td><%= l %>mg</td>
+        </tr>
+      </table>
+    <p>Diet</p>
+    <table id="table">
+      <tr>
+        <th>Breakfast</th>
+        <th>Lunch</th>
+        <th>Dinner</th>
+      </tr>
+      <tr>
+        <td><%= m %></td>
+        <td><%= n %></td>
+        <td><%= o %></td>
+      </tr>
+    </table>
+      
 
-    <h3>Diet</h3>
-      <p13><%=m%>, </p13>
-      <p14><%=n%>, </p14>
-      <p15><%=o%>. </p15>
   </body>
 </html>
