@@ -1,5 +1,9 @@
 const { Configuration, OpenAIApi } = require("openai");
-
+const fetch = require('node-fetch');
+const imageToURI = require('image-to-uri');
+const sblob = require('node:buffer');
+const FileReader = require('filereader');
+const { response } = require("express");
 const configuration = new Configuration({
 	apiKey: "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" 
 });
@@ -27,20 +31,18 @@ async function getDiet(gender, age, height, weight){
 	//console.log(response.data.choices[0].text)
 	return response.data.choices[0].text
 }
-
-function queryTags(images){
-    console.log(images);
+async function queryTags(images) {
     fetch('https://www.nyckel.com/v1/functions/b2a5oliheud0po9y/invoke', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: images
+        body: JSON.stringify({"data": images})    
     })
     .then(response => response.json())
     .then(data => {
         console.log(data)
-        return data
+        return data;
     });
 }
 
