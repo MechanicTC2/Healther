@@ -5,10 +5,10 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-async function getNutrition(gender, age, height, weight){
+async function getNutrition(age, height, weight){
 	const response = await openai.createCompletion({
 		model: "text-davinci-003",
-		prompt: "format both DRI and micronutrients into a javascript object: " + gender + ", " + age + " year old, " + height + " centimeters, " + weight + " kilograms.",
+		prompt: "format both DRI and micronutrients into a javascript object: " + age + " year old, " + height + " centimeters, " + weight + " kilograms.",
 		max_tokens: 3000,
 		temperature: 0,
 	});
@@ -16,11 +16,11 @@ async function getNutrition(gender, age, height, weight){
 	return response.data.choices[0].text
 }
 
-async function getDiet(gender, age, height, weight){
+async function getDiet(age, height, weight){
 	
 	const response = await openai.createCompletion({
 		model: "text-davinci-003",
-		prompt: "create a food diet based on this information: " + gender + ", " + age + " year old, " + height + " centimeters, " + weight + " kilograms." + " format this into a javascript object",
+		prompt: "create a food diet based on this information: " + age + " year old, " + height + " centimeters, " + weight + " kilograms." + " format this into a javascript object",
 		max_tokens: 3000,
 		temperature: 0,
 	});
