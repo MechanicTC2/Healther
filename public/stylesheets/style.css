@@ -6,3 +6,35 @@ body {
 a {
   color: #00B7FF;
 }
+input:hover{
+  cursor: pointer;
+}
+
+input[type="button"] {
+  /* Styles for input type="button" */
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"] {
+  /* Styles for input type="submit" */
+  background-color: #28a745;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+input[type="text"] {
+  /* Styles for input type="text" */
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
+  color: #333;
+}
+
