@@ -13,15 +13,15 @@ router.get('/', async function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('login', {title: 'Welcome to Healther', info: 'Login with existing credentials:'});
+  res.render('login', {title: 'Welcome back to Healther!', info: 'Login with existing credentials:'});
 });
 
 router.get("/getAttributes", async function(req, res, next){
-  res.render('getAttributes', {title: 'Just a short survey', info: 'Please fill in these fields so we can create your personal dietary plan!'})
+  res.render('getAttributes', {title: 'Just a short survey:', info: 'Please fill in these fields so we can create your personal dietary plan!'})
 })
 
 router.get('/signup', function(req, res, next) {
-  res.render('signup', {title: 'Signup for Healther', info: 'Signup for Healther, email and password:'});
+  res.render('signup', {title: 'Welcome to Healther!', info: 'Signup for Healther, email and password:'});
 });
 router.post('/authenticateUser', async function(req, res, next) {
   const result = await login(req, res, next);
@@ -34,6 +34,8 @@ router.post('/authenticateUser', async function(req, res, next) {
     res.render('login', {title: 'It looks like we experienced a problem', info: 'Email does not exist. If you do not have an account, please sign up:'});
   else if (result == "ETIMEDOUT")
     res.render('login', {title: 'It looks like we experienced a problem', info: 'Please check your connection and try again. If the issue persists, try reconnecting to the internet:'});
+  else if (result == "crit fail")
+    res.render('login', {title: 'It looks like we experienced a problem', info: 'Oh dears! There seems to be a fatal error on our end. We apologize for the inconvience. Please try again later:'});
   else {
     bcrypt.genSalt(1, async function(err, salt) {
       bcrypt.hash(result.substring(result.indexOf(";") + 1), salt, async function(err, hash) {
@@ -53,7 +55,7 @@ router.post('/registerUser', async function(req, res, next) {
   }
 });
 router.get('/upload', function(req, res, next){
-  res.render('upload', {title: 'upload'});
+  res.render('upload', {title: 'Food Analyzing System'});
 });
 router.get('/welcome', function(req, res, next){
   res.render('welcome', {title: 'info', 'info': 'Your dietary info'})
