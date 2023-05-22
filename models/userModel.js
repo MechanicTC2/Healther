@@ -37,34 +37,41 @@ async function login(req, res, next, err, results) {
 }
 //signup
 async function signup(req, res, next) {
+    console.log(req.body)
     var email = req.body.email;
     var password = req.body.password;
+    var height = req.body.height;
+    var weight = req.body.weight;
+    var age = req.body.age;
     if (email == undefined || password == undefined) {
         console.log("signup failed, not enough cred");
         return "not enough cred";
     }
     else {
+        ///*
         try {
             var data = await knex('users').where({
             username: email
             }).select('*');
-            if (email == data[0].email) {
+            console.log(data)
+            if (email == data[0].username) {
                 console.log("signup failed, email already exists");
                 return "email already exists";
             }
         }
         catch (error) {
-            knex('users').insert({
-                username: email,
-                user_password: password,
-            });                
-            console.log("signup success");
-            await bcrypt.genSalt(1, async function(err, salt) {
-                await bcrypt.hash(password, salt, async function(err, hash) {
-                    res.cookie('password', hash);
-                    return "signup success";
-                });
-            });
+        //*/
+        const shit = await knex('users').insert({
+            username: email,
+            user_password: password,
+            height: height,
+            weight: weight,
+            age: age
+        });   
+        console.log(shit)             
+        console.log("signup success");    
+        //res.cookie('password', password);
+        return "signup success";
         }
     }
 }

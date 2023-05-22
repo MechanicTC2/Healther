@@ -3,7 +3,54 @@
   <head>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
+  <style>
+    table, th, td {
+      border:1px solid black;
+      width: 25%
+    }
+  </style>
   <body>
-    <h1><%=foods%></h1>
+    <h1>DRI and Micronutrients</h1>
+      <p>Daily Nutrients Needed:</p>
+      <table id="table">
+        <tr>
+          <td><%= a %>mg</td>
+          <td><%= b %>mg</td>
+        </tr>
+        <tr>
+          <td><%= c %>mg</td>
+          <td><%= d %>mg</td>
+        </tr>
+          <td><%= e %>mg</td>
+          <td><%= f %>mg</td>
+        </tr>
+        <tr>
+          <td><%= g %>mg</td>
+          <td><%= h %>mg</td>
+        </tr>
+        <tr>
+          <td><%= i %>mg</td>
+          <td><%= j %>mg</td>
+        </tr>
+        <tr>
+          <td><%= k %>mg</td>
+          <td><%= l %>mg</td>
+        </tr>
+      </table>
+    <p>Diet</p>
+    <table id="table">
+      <tr>
+        <th>Breakfast</th>
+        <th>Lunch</th>
+        <th>Dinner</th>
+      </tr>
+      <tr>
+        <td><%= m %></td>
+        <td><%= n %></td>
+        <td><%= o %></td>
+      </tr>
+    </table>
+      
+
   </body>
 </html>
